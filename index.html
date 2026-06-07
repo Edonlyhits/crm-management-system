@@ -443,14 +443,10 @@ select{
   <div class="login-wrap">
     <div class="login-card">
       <h1>CRM Enterprise</h1>
-      <p>v8.6 Workspace Auth｜使用 Google 帳號身份驗證，無需 API Token。</p>
-      <div class="grid">
-        <div class="full"><label>GAS Web App URL（/exec）</label><input id="gasUrl" placeholder="https://script.google.com/macros/s/.../exec"></div>
-        <div class="full"><label>Google Client ID</label><input id="googleClientId" placeholder="xxxxxxxx.apps.googleusercontent.com"></div>
-      </div>
-      <button class="btn btn-primary" style="width:100%;margin-top:18px" id="loginBtn" onclick="login()">🔐 以 Google 帳號登入 CRM</button>
-      <div id="loginStatus" style="margin-top:10px;color:var(--dim);font-size:12px"></div>
-      <div class="help">🔐 點擊後會彈出 Google 帳號選擇視窗。您的 Google 帳號必須已登錄於系統 Users Sheet 中才能存取 CRM。<br>GAS URL 與 Client ID 設定會保存於本機瀏覽器 localStorage。</div>
+      <p>業務管理系統｜請以公司 Google 帳號登入</p>
+      <button class="btn btn-primary" style="width:100%;margin-top:18px" id="loginBtn" onclick="login()">🔐 以 Google 帳號登入</button>
+      <div id="loginStatus" style="margin-top:10px;color:var(--dim);font-size:12px;text-align:center"></div>
+      <div class="help">點擊後會彈出 Google 帳號選擇視窗。<br>若登入後顯示「存取被拒」，請聯絡管理員開通帳號權限。</div>
     </div>
   </div>
 </div>
@@ -501,8 +497,12 @@ select{
 const FALLBACK_STATUSES = ["待指派","未處理","諮詢中","尚未推薦","拒絕加line","首付不足","已透過其他仲介購買","已成交","無效"];
 const FALLBACK_NATIONALITIES = ["台灣","中國","香港","澳門","日本","菲律賓","印度","俄羅斯","阿聯酋","美國","英國","其他"];
 const FALLBACK_TYPES = ["買預售","設立公司","現房","買紅單","買現房店鋪","租房"];
-let GAS_URL = localStorage.getItem('crm_gas_url') || '';
-let GOOGLE_CLIENT_ID = localStorage.getItem('crm_client_id') || '';
+// ★ 部署時填入這兩個值，使用者不需要手動輸入任何設定
+const GAS_URL_DEFAULT    = 'https://script.google.com/macros/s/AKfycbzmFtUGTd5x1-j7w6bLfQtbTyW26byyocISjPjSvnrdNkg8JejpjwUdUGC5QZ6pIfUn/exec';   // ← 換成你的 /exec URL
+const CLIENT_ID_DEFAULT  = '391919708501-auf0bg6r9c4bieciim3tbjbu5vqekkjn.apps.googleusercontent.com';       // ← 換成你的 Client ID
+
+let GAS_URL          = GAS_URL_DEFAULT;
+let GOOGLE_CLIENT_ID = CLIENT_ID_DEFAULT;
 let currentAuthToken = null;   // Google OAuth access_token（每次 login 或 token refresh 更新）
 let tokenClient = null;        // GIS TokenClient instance
 // API_TOKEN removed — Workspace Auth uses Session.getActiveUser().getEmail() on the backend
@@ -568,11 +568,7 @@ applyTheme(localStorage.getItem('crm_theme') || 'light');
 // ============================================================
 
 function login(){
-  GAS_URL = val('gasUrl');
-  GOOGLE_CLIENT_ID = val('googleClientId');
-  if(!GAS_URL) return toast('請填入 GAS Web App URL', 'warn');
-  if(!GOOGLE_CLIENT_ID) return toast('請填入 Google Client ID', 'warn');
-  saveConfig();
+  // GAS_URL & GOOGLE_CLIENT_ID 已寫死在程式碼中，不需要使用者填寫
 
   const statusEl = $('loginStatus');
   if(statusEl) statusEl.textContent = '正在初始化 Google 登入...';
@@ -926,7 +922,12 @@ async function moveLeadStatus(leadId,newStatus){
   filterTable();
   updateCounts();
   try{
-    await apiPost({action:'movestatus', Lead_ID:leadId, newStatus});
+    await apiPost({
+  "action": "movestatus",
+  "authToken": "...",
+  "Lead_ID": "LD-0001",
+  "status": "諮詢中"
+});
     toast(`已將 ${lead.Name||leadId} 從「${oldStatus}」移到「${newStatus}」`,'success');
   }catch(e){
     // 失敗回滾
@@ -1011,17 +1012,14 @@ async function restoreLead(id){ try{ await apiPost({action:'restore', Lead_ID:id
 function renderArchive(){ const data=archivedLeads(); $('content').innerHTML=`<section class="panel"><div class="panel-head"><div class="panel-title">🗄️ 封存檔案庫</div></div><div class="table-wrap"><table class="compact-table"><thead><tr><th>姓名</th><th>電話</th><th>LINE</th><th>聯繫狀況</th><th>國籍</th><th>購買類型</th><th>預算/AED</th><th>業務</th><th>追蹤進度</th><th>操作</th></tr></thead><tbody>${tableRows(data,{archive:true})||'<tr><td colspan="10" class="no-data">沒有封存資料</td></tr>'}</tbody></table></div></section>`; }
 async function renderLogs(){ $('content').innerHTML=`<section class="panel"><div class="panel-head"><div class="panel-title">🧾 操作日誌</div><button class="btn btn-primary btn-sm" onclick="fetchLogs()">讀取日誌</button></div><div class="table-wrap"><table class="compact-table"><thead><tr><th>時間</th><th>操作者</th><th>操作內容</th><th>客戶</th><th>Lead ID</th></tr></thead><tbody id="logTbody"><tr><td colspan="5" class="no-data">點擊讀取日誌</td></tr></tbody></table></div></section>`; }
 async function fetchLogs(){ try{ const res=await apiPost({action:'getlogs', limit:200}); const arr=res.logs||res.data||[]; $('logTbody').innerHTML = arr.map(r=>`<tr><td>${esc(r['時間戳']||r.time||r.ts)}</td><td>${esc(r['操作者']||r.actor||r.User_Email)}</td><td>${esc(r['操作內容']||r.action)}</td><td>${esc(r['客戶名稱']||r.customerName)}</td><td>${esc(r.Lead_ID||r.leadId)}</td></tr>`).join('') || '<tr><td colspan="5" class="no-data">沒有日誌</td></tr>'; }catch(e){ toast('讀取日誌失敗：'+e.message,'danger'); } }
-function renderSettings(){ $('content').innerHTML=`<section class="panel"><div class="panel-head"><div class="panel-title">⚙️ 連線設定</div></div><div class="panel-body"><div class="config"><div><label>GAS Web App URL</label><input id="setGas" value="${esc(GAS_URL)}"></div><div><label>Google Client ID</label><input id="setClientId" value="${esc(GOOGLE_CLIENT_ID)}"></div><button class="btn btn-primary" onclick="saveSettings()">儲存</button></div><div class="help">🔐 Workspace Auth 模式：使用 Google OAuth 驗證，不需要 API Token。<br>如重新部署 GAS 或更換 Google Cloud 專案，請更新此處設定。</div></div></section>`; }
-function saveSettings(){ GAS_URL=val('setGas'); GOOGLE_CLIENT_ID=val('setClientId'); saveConfig(); toast('設定已儲存','success'); }
+function renderSettings(){ $('content').innerHTML=`<section class="panel"><div class="panel-head"><div class="panel-title">⚙️ 系統資訊</div></div><div class="panel-body"><div class="config"><div><label>目前登入帳號</label><input readonly value="${esc(currentUser?.email||'')}"></div><div><label>角色</label><input readonly value="${esc(currentUser?.role||'')}"></div><div><label>GAS Web App URL</label><input readonly value="${esc(GAS_URL)}"></div></div><div class="help">🔐 此系統使用 Google Workspace OAuth 驗證。如需修改系統設定，請聯絡管理員直接修改程式碼部署。</div></div></section>`; }
+function saveSettings(){ toast('設定為唯讀，如需修改請聯絡管理員。','warn'); }
 function openModal(title,body,foot){ $('modalTitle').textContent=title; $('modalBody').innerHTML=body; $('modalFoot').innerHTML=foot; $('modalBackdrop').classList.add('open'); }
 function closeModal(){ $('modalBackdrop').classList.remove('open'); editingLeadId=null; }
 window.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); closeLeadDrawer(); } });
 (function boot(){
-  setVal('gasUrl', GAS_URL);
-  setVal('googleClientId', GOOGLE_CLIENT_ID);
+  // GAS_URL & GOOGLE_CLIENT_ID 已寫死，不需要 setVal
   // Workspace Auth: access_token 不持久化，每次開啟頁面必須重新 OAuth 授權
-  // 因此不自動進入 showApp()，使用者必須點擊「以 Google 帳號登入」
-  // （若要實作記住登入狀態，需搭配 ID Token + 後端 session，超出本系統範圍）
 })();
 </script>
 </body>
