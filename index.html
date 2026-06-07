@@ -922,12 +922,7 @@ async function moveLeadStatus(leadId,newStatus){
   filterTable();
   updateCounts();
   try{
-    await apiPost({
-  "action": "movestatus",
-  "authToken": "...",
-  "Lead_ID": "LD-0001",
-  "status": "諮詢中"
-});
+    await apiPost({action:'movestatus', Lead_ID:leadId, newStatus});
     toast(`已將 ${lead.Name||leadId} 從「${oldStatus}」移到「${newStatus}」`,'success');
   }catch(e){
     // 失敗回滾
