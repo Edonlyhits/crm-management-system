@@ -909,12 +909,14 @@ function allowLeadDrop(ev){ ev.preventDefault(); ev.dataTransfer.dropEffect='mov
 function leadDragLeave(ev){ if(!ev.currentTarget.contains(ev.relatedTarget)) ev.currentTarget.classList.remove('drag-over'); }
 async function dropLeadStatus(ev, newStatus){ ev.preventDefault(); ev.currentTarget.classList.remove('drag-over'); const leadId=ev.dataTransfer.getData('text/plain'); if(!leadId) return; await moveLeadStatus(leadId,newStatus); }
 
-// Bug Fix #4 (前端)：movestatus 已在 GAS 後端實作，此處前端邏輯維持不變
+// movestatus 已在 GAS 後端實作
 // 前端樂觀更新（先更新畫面）→ 再向後端發送 movestatus，失敗時回滾
 async function moveLeadStatus(leadId,newStatus){
   const lead=byId(leadId);
   if(!lead) return toast('找不到客戶資料','danger');
-  const oldStatus=lead.Status_Contact||'待指派';
+  // 前端防呆：空值或未定義直接攔截，避免後端收到空 status
+  if(!newStatus || !newStatus.trim()) return toast('拖曳目標狀態無效','warn');
+  const oldStatus=lead.Status_Contact||'未處理';
   if(oldStatus===newStatus) return;
   // 樂觀更新
   lead.Status_Contact=newStatus;
