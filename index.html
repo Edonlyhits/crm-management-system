@@ -326,11 +326,11 @@ select{
 .crm-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:10px 12px;box-shadow:0 8px 24px rgba(28,45,78,.06)}
 .view-switcher{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:12px;padding:3px;background:var(--surface2);gap:2px}.view-tab{border:0;background:transparent;color:var(--dim);font-weight:800;border-radius:9px;padding:7px 12px;cursor:pointer}.view-tab.active{background:var(--surface);color:var(--accent);box-shadow:0 4px 14px rgba(28,45,78,.08)}
 .crm-search{flex:1;min-width:260px}.crm-select{width:160px}.crm-content-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;min-height:0}.crm-content-inner{padding:14px;min-height:0}
-.bitrix-kanban-wrap{position:relative;overflow:hidden}.bitrix-kanban{display:grid;gap:10px;overflow-x:visible;overflow-y:hidden;padding:4px 2px 14px}.bitrix-kanban::-webkit-scrollbar{height:8px}.bitrix-col{background:var(--surface2);border:1px solid var(--border);border-radius:18px;min-height:calc(100dvh - 310px);max-height:calc(100dvh - 310px);display:flex;flex-direction:column;overflow:hidden}.bitrix-col-head{padding:12px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:8px;background:linear-gradient(180deg,var(--surface),var(--surface2))}.bitrix-col-title{font-weight:900;font-size:13px}.bitrix-col-meta{font-family:var(--mono);color:var(--dim);font-size:11px;margin-top:2px}.bitrix-col-total{font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--glow);border:1px solid rgba(47,111,237,.18);border-radius:999px;padding:2px 8px;white-space:nowrap}.bitrix-col-body{padding:10px;overflow:auto;flex:1}.bitrix-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 8px 20px rgba(28,45,78,.07);cursor:pointer;transition:.15s}.bitrix-card:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 12px 28px var(--glow)}.bitrix-card.dragging{opacity:.48;transform:scale(.98)}.bitrix-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.bitrix-name{font-weight:900;font-size:13px;line-height:1.25;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bitrix-budget{font-family:var(--mono);font-weight:900;color:var(--accent);margin-top:8px}.bitrix-meta{display:grid;gap:4px;margin-top:8px;color:var(--dim);font-size:11px}.bitrix-card-actions{display:flex;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}.bitrix-empty{border:1px dashed var(--border2);border-radius:14px;padding:22px 10px;text-align:center;color:var(--muted);font-size:12px;background:rgba(255,255,255,.25)}
+.bitrix-kanban-wrap{position:relative;overflow:hidden}.bitrix-kanban{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,300px);gap:12px;overflow-x:auto;overflow-y:hidden;padding:4px 2px 14px;scroll-snap-type:x proximity}.bitrix-kanban::-webkit-scrollbar{height:8px}.bitrix-col{scroll-snap-align:start;background:var(--surface2);border:1px solid var(--border);border-radius:18px;min-height:calc(100vh - 250px);max-height:calc(100vh - 250px);display:flex;flex-direction:column;overflow:hidden}.bitrix-col-head{padding:12px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:8px;background:linear-gradient(180deg,var(--surface),var(--surface2))}.bitrix-col-title{font-weight:900;font-size:13px}.bitrix-col-meta{font-family:var(--mono);color:var(--dim);font-size:11px;margin-top:2px}.bitrix-col-total{font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--glow);border:1px solid rgba(47,111,237,.18);border-radius:999px;padding:2px 8px;white-space:nowrap}.bitrix-col-body{padding:10px;overflow:auto;flex:1}.bitrix-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 8px 20px rgba(28,45,78,.07);cursor:pointer;transition:.15s}.bitrix-card:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 12px 28px var(--glow)}.bitrix-card.dragging{opacity:.48;transform:scale(.98)}.bitrix-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.bitrix-name{font-weight:900;font-size:14px;line-height:1.25;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bitrix-budget{font-family:var(--mono);font-weight:900;color:var(--accent);margin-top:8px}.bitrix-meta{display:grid;gap:4px;margin-top:8px;color:var(--dim);font-size:11px}.bitrix-card-actions{display:flex;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}.bitrix-empty{border:1px dashed var(--border2);border-radius:14px;padding:22px 10px;text-align:center;color:var(--muted);font-size:12px;background:rgba(255,255,255,.25)}
 .list-shell{display:flex;flex-direction:column;gap:10px}.column-popover{position:relative}.column-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:20;width:230px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:16px;padding:10px;display:none}.column-menu.open{display:block}.column-menu label{display:flex;align-items:center;gap:8px;margin:0;padding:7px;border-radius:10px;color:var(--text);font-weight:600}.column-menu label:hover{background:var(--surface2)}.column-menu input{width:auto}.bitrix-table-wrap{border:1px solid var(--border);border-radius:16px;overflow:auto;max-height:calc(100vh - 285px);background:var(--surface)}.bitrix-table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px}.bitrix-table th{position:sticky;top:0;z-index:2;background:var(--surface2);color:var(--dim);text-align:left;padding:10px;border-bottom:1px solid var(--border);white-space:nowrap}.bitrix-table td{padding:10px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap}.bitrix-table tr:hover td{background:var(--surface2)}.bitrix-table th.col-status,.bitrix-table td.col-status{width:96px;min-width:96px;max-width:96px;text-align:center;padding-left:6px;padding-right:6px}.bitrix-table td.col-status .chip{max-width:86px;overflow:hidden;text-overflow:ellipsis;justify-content:center}.bitrix-table th.col-name,.bitrix-table td.col-name{min-width:210px}.bitrix-table th.col-actions,.bitrix-table td.col-actions{width:96px;min-width:96px}.lead-main-cell{display:flex;align-items:center;gap:10px}.lead-avatar{width:30px;height:30px;border-radius:10px;background:var(--glow);color:var(--accent);font-weight:900;display:flex;align-items:center;justify-content:center}.lead-name-block b{display:block;color:var(--text);font-size:13px}.lead-name-block small{color:var(--dim)}
 .activity-feed{display:grid;gap:10px}.activity-card{border:1px solid var(--border);border-radius:16px;background:var(--surface);padding:12px;display:flex;justify-content:space-between;gap:12px}.activity-card b{color:var(--accent)}.activity-card .muted{font-size:12px}.archive-hint{padding:18px;border:1px dashed var(--border2);border-radius:16px;background:var(--surface2);color:var(--dim)}
 .drawer-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.20);z-index:45;opacity:0;pointer-events:none;transition:.2s}.drawer-backdrop.open{opacity:1;pointer-events:auto}.lead-drawer{position:fixed;right:0;top:0;height:100vh;width:min(720px,96vw);background:var(--surface);border-left:1px solid var(--border);box-shadow:-24px 0 60px rgba(15,23,42,.22);z-index:60;transform:translateX(105%);transition:.24s ease;display:flex;flex-direction:column}.lead-drawer.open{transform:translateX(0)}.drawer-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;background:linear-gradient(135deg,var(--surface),var(--surface2))}.drawer-title{font-size:20px;font-weight:900}.drawer-sub{color:var(--dim);font-size:12px;margin-top:4px}.drawer-tabs{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);overflow-x:auto}.drawer-tab{border:1px solid transparent;background:transparent;color:var(--dim);border-radius:999px;padding:7px 12px;font-weight:800;cursor:pointer;white-space:nowrap}.drawer-tab.active{background:var(--glow);border-color:rgba(47,111,237,.20);color:var(--accent)}.drawer-body{padding:16px 20px;overflow:auto;flex:1}.drawer-foot{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;background:var(--surface)}.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.detail-item{border:1px solid var(--border);border-radius:14px;background:var(--surface2);padding:11px}.detail-item span{display:block;color:var(--dim);font-size:11px;font-weight:800;margin-bottom:4px}.detail-item b{font-size:13px}.detail-item.full{grid-column:1/-1}.drawer-note-box{display:grid;gap:10px}.drawer-form-section{border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:12px;background:var(--surface2)}.drawer-form-section-title{font-weight:900;margin-bottom:10px;color:var(--accent)}
-@media(max-width:900px){.crm-page-head{flex-direction:column}.crm-head-actions{justify-content:flex-start}.crm-search{min-width:100%}.crm-select{width:100%}.bitrix-kanban{grid-template-columns:repeat(var(--kanban-cols,3),minmax(220px,1fr));overflow-x:auto;scroll-snap-type:x proximity;}.bitrix-col{min-height:62vh;max-height:62vh}.detail-grid{grid-template-columns:1fr}.bitrix-table-wrap{max-height:58vh}.lead-drawer{width:100vw}.drawer-body{padding:14px}.drawer-head{padding:16px}}
+@media(max-width:900px){.crm-page-head{flex-direction:column}.crm-head-actions{justify-content:flex-start}.crm-search{min-width:100%}.crm-select{width:100%}.bitrix-kanban{grid-auto-columns:minmax(245px,84vw)}.bitrix-col{min-height:62vh;max-height:62vh}.detail-grid{grid-template-columns:1fr}.bitrix-table-wrap{max-height:58vh}.lead-drawer{width:100vw}.drawer-body{padding:14px}.drawer-head{padding:16px}}
 
 
 /* === v8.4 Bitrix List Adaptive Fix === */
@@ -427,78 +427,6 @@ select{
 @media(max-width:1100px){.pipeline-shell{grid-template-columns:1fr}.quick-status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bitrix-table-wrap{max-height:58vh}}
 @media(max-width:760px){.stage-row{grid-template-columns:1fr 52px}.stage-bar,.stage-money{display:none}.quick-status-grid{grid-template-columns:1fr}.view-tab{min-width:auto}}
 
-/* === v8.8 Kanban Group Tabs === */
-.kanban-group-tabs{
-  display:flex;
-  gap:6px;
-  margin-bottom:10px;
-  padding:0 2px;
-}
-.kanban-group-tab{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:7px 14px;
-  font-weight:800;
-  font-size:13px;
-  cursor:pointer;
-  background:var(--surface2);
-  color:var(--dim);
-  transition:.15s;
-  white-space:nowrap;
-}
-.kanban-group-tab:hover{
-  border-color:var(--accent);
-  color:var(--text);
-}
-.kanban-group-tab.active{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
-  box-shadow:0 4px 14px var(--glow);
-}
-.kgt-label{ font-weight:800; }
-.kgt-count{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:20px;
-  height:20px;
-  padding:0 5px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:900;
-  background:rgba(255,255,255,.22);
-  color:inherit;
-}
-.kanban-group-tab:not(.active) .kgt-count{
-  background:var(--surface3);
-  color:var(--dim);
-}
-
-/* bitrix-kanban：群組模式下固定 3 欄均分，不橫捲 */
-.bitrix-kanban{
-  display:grid;
-  grid-template-columns:repeat(var(--kanban-cols,3), minmax(0,1fr));
-  grid-auto-flow:unset;
-  gap:10px;
-  overflow-x:visible;
-  overflow-y:hidden;
-  padding:4px 2px 14px;
-}
-
-@media(max-width:900px){
-  .kanban-group-tabs{ overflow-x:auto; flex-wrap:nowrap; padding-bottom:2px; }
-  .kanban-group-tab{ font-size:12px; padding:6px 10px; }
-  .bitrix-kanban{
-    grid-template-columns:repeat(var(--kanban-cols,3), minmax(220px,1fr));
-    overflow-x:auto;
-    scroll-snap-type:x proximity;
-  }
-}
-
 
 
 /* =========================================================
@@ -583,7 +511,6 @@ let allLeads = [], users = [], logs = [];
 let statuses = FALLBACK_STATUSES.slice(), nationalities = FALLBACK_NATIONALITIES.slice(), purchaseTypes = FALLBACK_TYPES.slice();
 let page = 'dashboard', editingLeadId = null;
 let leadViewMode = localStorage.getItem('crm_lead_view_mode') || 'kanban';
-let kanbanGroupTab = localStorage.getItem('crm_kanban_group') || '待處理';
 let activeDrawerLeadId = null, activeDrawerTab = 'overview';
 let leadSearchQuery = '';
 let leadStatusFilter = '';
@@ -937,42 +864,7 @@ function onLeadStatusChange(el){ leadStatusFilter=el.value; leadPage=1; localSto
 
 function renderLeadViewTabs(){ const tabs=[['kanban','狀態看板','拖曳推進'],['list','客戶清單','分頁管理'],['activity','跟進動態','紀錄時間軸']]; return `<div class="view-switcher">${tabs.map(([k,t,h])=>`<button class="view-tab ${leadViewMode===k?'active':''}" onclick="setLeadViewMode('${k}')">${t}<span class="tab-hint">${h}</span></button>`).join('')}</div>`; }
 function setLeadViewMode(mode){ leadViewMode=mode; leadPage=1; localStorage.setItem('crm_lead_view_mode', mode); localStorage.setItem('crm_lead_page', String(leadPage)); renderLeads(); }
-function setKanbanGroup(group){ kanbanGroupTab=group; localStorage.setItem('crm_kanban_group', group); const data=applyLeadFilters(); document.getElementById('leadMainView').innerHTML=renderLeadMainView(data); }
-function renderLeadDragBoard(data){
-  const KANBAN_GROUPS = {
-    '待處理': ['待指派','未處理','諮詢中'],
-    '推進中': ['尚未推薦','拒絕加line','首付不足'],
-    '已結案': ['已透過其他仲介購買','已成交','無效']
-  };
-  const groupNames = Object.keys(KANBAN_GROUPS);
-  const activeGroup = kanbanGroupTab;
-  const activeStatuses = KANBAN_GROUPS[activeGroup] || KANBAN_GROUPS['待處理'];
-  const cols = activeStatuses.length;
-
-  const groupTabsHtml = groupNames.map(g => {
-    const groupStatuses = KANBAN_GROUPS[g];
-    const total = data.filter(l => groupStatuses.includes(l.Status_Contact||'待指派')).length;
-    const isActive = g === activeGroup;
-    return `<button class="kanban-group-tab${isActive?' active':''}" onclick="setKanbanGroup('${g}')">`
-      + `<span class="kgt-label">${g}</span>`
-      + `<span class="kgt-count">${total}</span>`
-      + `</button>`;
-  }).join('');
-
-  const colsHtml = activeStatuses.map(s => {
-    const items = data.filter(l => (l.Status_Contact||'待指派') === s);
-    const total = totalBudget(items);
-    return `<div class="bitrix-col lead-drop-col" data-status="${esc(s)}" ondragover="allowLeadDrop(event)" ondragleave="leadDragLeave(event)" ondrop="dropLeadStatus(event,'${esc(s)}')">`
-      + `<div class="bitrix-col-head"><div><div class="bitrix-col-title">${esc(s)}</div><div class="bitrix-col-meta">${items.length} leads</div></div><div class="bitrix-col-total">${total?`AED ${total.toLocaleString('en-US')}`:'—'}</div></div>`
-      + `<div class="bitrix-col-body">${items.map(l=>leadDragCard(l)).join('') || '<div class="bitrix-empty">拖曳客戶到這裡</div>'}</div>`
-      + `</div>`;
-  }).join('');
-
-  return `<div class="bitrix-kanban-wrap">`
-    + `<div class="kanban-group-tabs">${groupTabsHtml}</div>`
-    + `<div class="bitrix-kanban" style="--kanban-cols:${cols}">${colsHtml}</div>`
-    + `</div>`;
-}
+function renderLeadDragBoard(data){ return `<div class="bitrix-kanban-wrap"><div class="bitrix-kanban">${statuses.map(s=>{ const items=data.filter(l=>(l.Status_Contact||'待指派')===s); const total=totalBudget(items); return `<div class="bitrix-col lead-drop-col" data-status="${esc(s)}" ondragover="allowLeadDrop(event)" ondragleave="leadDragLeave(event)" ondrop="dropLeadStatus(event,'${esc(s)}')"><div class="bitrix-col-head"><div><div class="bitrix-col-title">${esc(s)}</div><div class="bitrix-col-meta">${items.length} leads</div></div><div class="bitrix-col-total">${total?`AED ${total.toLocaleString('en-US')}`:'—'}</div></div><div class="bitrix-col-body">${items.map(l=>leadDragCard(l)).join('') || '<div class="bitrix-empty">拖曳客戶到這裡</div>'}</div></div>`; }).join('')}</div></div>`; }
 function leadDragCard(l){ const id=esc(l.Lead_ID); return `<div class="bitrix-card" draggable="true" data-lead-id="${id}" ondragstart="leadDragStart(event,'${id}')" ondragend="leadDragEnd(event)" onclick="openLeadDrawer('${id}','overview')"><div class="bitrix-card-top"><div><div class="bitrix-name">${esc(l.Name||'未命名')}</div><div class="muted">${esc(leadContact(l))}</div></div>${statusChip(l.Status_Contact)}</div><div class="bitrix-budget">${esc(leadBudget(l))}</div><div class="bitrix-meta"><span>👤 ${esc(userName(l.Assigned_Sales)||'未指派')}</span><span>🏠 ${esc(l.Type||'未填類型')}　🌐 ${esc(l.Status_Region||'未填國籍')}</span>${l.Note?`<span title="${esc(l.Note)}">📝 ${esc(l.Note).slice(0,46)}</span>`:''}</div><div class="bitrix-card-actions" onclick="event.stopPropagation()"><button class="btn btn-sm" onclick="openLeadDrawer('${id}','edit')">✏️ 編輯</button><button class="btn btn-sm btn-success" onclick="openLeadDrawer('${id}','notes')">📒 跟進</button></div></div>`; }
 
 function renderLeads(extraPredicate=null){
@@ -1088,7 +980,7 @@ async function runNextStep(id,{content,type='一般跟進',status='',nextDate=''
   }catch(e){ l.Status_Contact=oldStatus; toast('一鍵下一步失敗：'+e.message,'danger'); renderAfterLeadMutation(); }
 }
 function quickNextStep(id,key){ const a=NEXT_ACTIONS.find(x=>x.key===key); if(!a) return; runNextStep(id,{content:a.content,type:a.type,status:a.status,nextDate:addDaysISO(a.days)}); }
-function quickCustomNextStep(id){ const content=val('customNextContent'); if(!content) return toast('請輸入自訂下一步內容','warn'); runNextStep(id,{content,type:'一般跟進',status:val('customNextStatus'),nextDate:val('customNextDate')||todayISO()}); }
+function quickCustomNextStep(id){ const content=val('customNextContent'); if(!content) return toast('請輸入自訂下一步內容','warn'); runNextStep(id,{content,type:'一般跟進',status:val('customNextStatus'),nextDate:val('customNextDate')||todayISO()}).then(()=>closeLeadDrawer()); }
 
 function renderDrawerNotes(l){ return `<div class="drawer-note-box"><div class="grid"><div><label>類型</label><select id="mNoteType"><option>一般跟進</option><option>重要</option><option>電話</option><option>面談</option><option>說明會</option><option>已拉群</option></select></div><div><label>下次跟進日</label><input id="mNoteDate" type="date"></div><div class="full"><label>內容</label><textarea class="big-textarea" id="mNoteContent" placeholder="輸入這次跟進內容..."></textarea></div></div><div class="notes-toolbar"><button class="btn btn-primary" onclick="submitModalNote('${esc(l.Lead_ID)}')">新增跟進紀錄</button><button class="btn btn-ghost" onclick="loadNotes('${esc(l.Lead_ID)}',true)">重新載入紀錄</button></div><div id="noteHistory" class="note-list"><div class="note-loading">正在讀取跟進紀錄...</div></div></div>`; }
 function renderDrawerOps(l){ return `<div class="detail-grid"><div class="detail-item full"><span>快速改狀態</span><select onchange="moveLeadStatus('${esc(l.Lead_ID)}',this.value)">${statuses.map(s=>`<option ${String(l.Status_Contact||'待指派')===s?'selected':''}>${esc(s)}</option>`).join('')}</select></div><div class="detail-item full"><span>常用操作</span><div class="actions"><button class="btn btn-primary" onclick="openLeadDrawer('${esc(l.Lead_ID)}','next')">⚡ 一鍵下一步</button><button class="btn btn-success" onclick="openLeadDrawer('${esc(l.Lead_ID)}','notes')">📒 新增跟進</button><button class="btn" onclick="openLeadDrawer('${esc(l.Lead_ID)}','edit')">✏️ 編輯資料</button><button class="btn btn-danger" onclick="archiveLead('${esc(l.Lead_ID)}')">封存客戶</button></div></div></div>`; }
