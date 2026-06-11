@@ -793,8 +793,7 @@ function updateCounts(){
 function showPage(p){ page=p; document.querySelectorAll('.side-item').forEach(i=>i.classList.toggle('active', i.dataset.page===p)); render(); }
 function render(){ const map={dashboard:renderDashboard,todo:renderTodoCenter,pipeline:renderPipeline,leads:renderLeads,pool:renderPool,add:renderAdd,quicknote:renderQuickNote,logs:renderLogs,archive:renderArchive,settings:renderSettings}; (map[page]||renderDashboard)(); }
 function statusChip(s){ const t=String(s||'待指派'); let c='neutral'; if(['諮詢中','尚未推薦'].includes(t)) c='blue'; if(t==='已成交') c='green'; if(['拒絕加line','首付不足','無效','已透過其他仲介購買'].includes(t)) c='red'; if(['未處理','待指派'].includes(t)) c='amber'; return `<span class="chip chip-${c}">${esc(t)}</span>`; }
-function userName(email){ const u=users.find(x=>normalizeEmail(x.email)===normalizeEmail(email)); return u ? `${u.name}｜${u.email}` : (email || '未指派'); }
-
+function userName(email){ const u=users.find(x=>normalizeEmail(x.email)===normalizeEmail(email)); return u ? `${esc(u.name)}｜${esc(u.email)}` : esc(email || '未指派');}
 function todayISO(){ const d=new Date(); d.setHours(0,0,0,0); return d.toISOString().slice(0,10); }
 function dateOnly(value){ if(!value) return ''; const d=new Date(value); if(Number.isNaN(d.getTime())) return String(value).slice(0,10); return d.toISOString().slice(0,10); }
 function daysBetween(dateValue){ if(!dateValue) return null; const d=new Date(dateValue); if(Number.isNaN(d.getTime())) return null; d.setHours(0,0,0,0); const t=new Date(); t.setHours(0,0,0,0); return Math.floor((t-d)/(24*60*60*1000)); }
